@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MixedShop.Models;
 
+#nullable disable
+
 namespace MixedShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
@@ -15,9 +17,10 @@ namespace MixedShop.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "7.0.20")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -43,15 +46,16 @@ namespace MixedShop.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("AspNetRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -67,7 +71,7 @@ namespace MixedShop.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
@@ -132,15 +136,16 @@ namespace MixedShop.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -156,7 +161,7 @@ namespace MixedShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -178,7 +183,7 @@ namespace MixedShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -193,7 +198,7 @@ namespace MixedShop.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -212,15 +217,16 @@ namespace MixedShop.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("MixedShop.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
@@ -269,8 +275,9 @@ namespace MixedShop.Migrations
                 {
                     b.Property<int>("ItemId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemId"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -313,7 +320,7 @@ namespace MixedShop.Migrations
                             IsRecommended = true,
                             Make = "JBL",
                             Name = "JBL Headset",
-                            Price = 499.99m
+                            Price = 75.99m
                         },
                         new
                         {
@@ -325,7 +332,7 @@ namespace MixedShop.Migrations
                             IsRecommended = false,
                             Make = "Canon",
                             Name = "Canon Printer",
-                            Price = 2199.99m
+                            Price = 299.99m
                         },
                         new
                         {
@@ -337,7 +344,7 @@ namespace MixedShop.Migrations
                             IsRecommended = false,
                             Make = "Logitech",
                             Name = "Logitech Wireless Mouse",
-                            Price = 119.99m
+                            Price = 15.99m
                         },
                         new
                         {
@@ -349,7 +356,7 @@ namespace MixedShop.Migrations
                             IsRecommended = false,
                             Make = "Logitech",
                             Name = "Logitech High Performance Mouse",
-                            Price = 349.99m
+                            Price = 49.99m
                         },
                         new
                         {
@@ -361,7 +368,7 @@ namespace MixedShop.Migrations
                             IsRecommended = false,
                             Make = "Sony",
                             Name = "Sony Headphones",
-                            Price = 599.99m
+                            Price = 79.99m
                         },
                         new
                         {
@@ -373,7 +380,7 @@ namespace MixedShop.Migrations
                             IsRecommended = true,
                             Make = "Samsung",
                             Name = "Samsung Odyssey Montior",
-                            Price = 899.99m
+                            Price = 119.99m
                         },
                         new
                         {
@@ -385,7 +392,7 @@ namespace MixedShop.Migrations
                             IsRecommended = false,
                             Make = "acer",
                             Name = "Acer Full HD Monitor",
-                            Price = 799.99m
+                            Price = 119.99m
                         },
                         new
                         {
@@ -397,7 +404,7 @@ namespace MixedShop.Migrations
                             IsRecommended = false,
                             Make = "logitech",
                             Name = "Logitech Keyboard",
-                            Price = 110.00m
+                            Price = 14.99m
                         },
                         new
                         {
@@ -409,7 +416,7 @@ namespace MixedShop.Migrations
                             IsRecommended = false,
                             Make = "bose",
                             Name = "Bose Headphones",
-                            Price = 649.99m
+                            Price = 89.99m
                         },
                         new
                         {
@@ -421,7 +428,7 @@ namespace MixedShop.Migrations
                             IsRecommended = false,
                             Make = "razer",
                             Name = "Razer Gaming Keyboard",
-                            Price = 249.99m
+                            Price = 34.99m
                         },
                         new
                         {
@@ -433,7 +440,7 @@ namespace MixedShop.Migrations
                             IsRecommended = true,
                             Make = "lg",
                             Name = "LG Curved Monitor",
-                            Price = 2909.99m
+                            Price = 389.99m
                         },
                         new
                         {
@@ -445,7 +452,7 @@ namespace MixedShop.Migrations
                             IsRecommended = false,
                             Make = "asus",
                             Name = "Asus Curved Gaming Monitor",
-                            Price = 1559.99m
+                            Price = 207.00m
                         },
                         new
                         {
@@ -457,7 +464,7 @@ namespace MixedShop.Migrations
                             IsRecommended = false,
                             Make = "hp",
                             Name = "HP LaserJet Printer",
-                            Price = 1799.99m
+                            Price = 240.00m
                         });
                 });
 
@@ -465,8 +472,9 @@ namespace MixedShop.Migrations
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -518,8 +526,9 @@ namespace MixedShop.Migrations
                 {
                     b.Property<int>("OrderDetailId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailId"));
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
@@ -546,8 +555,9 @@ namespace MixedShop.Migrations
                 {
                     b.Property<int>("ShoppingCartItemId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShoppingCartItemId"));
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
